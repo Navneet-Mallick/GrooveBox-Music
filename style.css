@@ -478,35 +478,13 @@ nav { display: flex; flex-direction: column; gap: 2px; }
   .main { padding: 16px 12px; }
 }
 
-/* ─── Card Actions (like + delete) ──────────────────────────────────────── */
+/* ─── Card Actions ───────────────────────────────────────────────────────── */
 .song-card.active .card-actions { opacity: 1; }
 
-.card-like-btn {
-  background: none; border: none; color: var(--text-muted);
-  cursor: pointer; font-size: 0.85rem; padding: 2px 4px;
-  transition: color 0.2s, transform 0.1s;
-}
-.card-like-btn:hover { color: var(--text); transform: scale(1.2); }
-.card-like-btn.liked { color: var(--accent); }
+/* ─── Empty State (duplicate removed) ───────────────────────────────────── */
 
-/* ─── Active Playlist in Sidebar ────────────────────────────────────────── */
-#playlist-sidebar li {
-  display: flex; align-items: center; gap: 8px;
-  padding: 7px 12px; border-radius: 4px; cursor: pointer;
-  color: var(--text-muted); font-size: 0.85rem; transition: 0.2s;
-}
-#playlist-sidebar li:hover { color: var(--text); background: var(--surface2); }
-#playlist-sidebar li.active { color: var(--text); background: var(--surface2); border-left: 3px solid var(--accent); }
+/* ─── Active Playlist in Sidebar (consolidated above) ───────────────────── */
 .pl-icon { font-size: 1rem; }
-
-/* ─── Empty State ────────────────────────────────────────────────────────── */
-.empty-state {
-  grid-column: 1 / -1; text-align: center;
-  padding: 60px 20px; color: var(--text-muted);
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-}
-.empty-state i { font-size: 3rem; opacity: 0.3; }
-.empty-state p  { font-size: 0.95rem; }
 
 /* ── Repeat mode indicator ───────────────────────────────────────────────── */
 #repeat-btn[data-mode="one"]::after {
@@ -566,15 +544,15 @@ nav { display: flex; flex-direction: column; gap: 2px; }
 .pl-modal-new .upload-btn { padding: 8px 12px; border-radius: 6px; white-space: nowrap; }
 
 /* ── Playlist sidebar delete btn ─────────────────────────────────────────── */
-#playlist-sidebar li { justify-content: space-between; }
-#playlist-sidebar li .pl-name { flex: 1; }
 .pl-del-btn {
   background: none; border: none; color: var(--text-dim);
   cursor: pointer; font-size: 0.75rem; padding: 2px 4px;
   border-radius: 3px; opacity: 0; transition: opacity 0.2s, color 0.2s;
+  flex-shrink: 0;
 }
 #playlist-sidebar li:hover .pl-del-btn { opacity: 1; }
 .pl-del-btn:hover { color: var(--danger); }
+.pl-empty-hint { color: var(--text-dim); font-size: 0.78rem; padding: 6px 12px; }
 
 /* ── card-pl-btn ─────────────────────────────────────────────────────────── */
 .card-pl-btn {
