@@ -3,11 +3,7 @@
  * Generates real playable audio buffers. No external files needed.
  */
 
-const AudioCtx = window.AudioContext || window.webkitAudioContext;
-
 // ─── Utility ──────────────────────────────────────────────────────────────────
-function createCtx() { return new AudioCtx(); }
-
 function noteFreq(note, octave) {
   const notes = { C:0, D:2, E:4, F:5, G:7, A:9, B:11 };
   return 440 * Math.pow(2, (notes[note] + (octave - 4) * 12 - 9) / 12);
