@@ -6,9 +6,12 @@ const CATALOGUE = [
   { id:'s3', title:'Deep Space',     artist:'GrooveBox', genre:'Ambient',   synthStyle:'ambient',   color:'#12c2e9', emoji:'🌌' },
   { id:'s4', title:'Jeewan Ko Bato', artist:'Unknown',   genre:'Nepali',     src:'./tracks/demons_phonk.mp3', color:'#ff4444', emoji:'💫' },
   { id:'s5', title:'Bolly Music',    artist:'Unknown',   genre:'Rock',       src:'./tracks/Music.mp3',        color:'#fee140', emoji:'❤️' },
-    { id:'s7', title:'Backbenchers', artist:'Unknown', genre:'Fun/Pop', src:'./tracks/Backbencher.mp3', color:'#fee140', emoji:'😎' },
-  { id:'s6', title:'Demons Phonk',   artist:'Unknown',   genre:'Phonk',      src:'./tracks/demons_phonk.mp3', color:'#ff4444', emoji:'😈' },
-  { id:'s7', title:'Hotel California_Intro', artist:'Eagles', genre:'Rock', src:'./tracks/eagles.mp3', color:'#fee140', emoji:'🦅' },
+  
+    { id:'s6', title:'Backbenchers', artist:'Unknown', genre:'Fun/Pop', src:'./tracks/Backbencher.mp3', color:'#fee140', emoji:'😎' },
+  { id:'s7', title:'Demons Phonk',   artist:'Unknown',   genre:'Phonk',      src:'./tracks/demons_phonk.mp3', color:'#ff4444', emoji:'😈' },
+  { id:'s8', title:'Hotel California_Intro', artist:'Eagles', genre:'Rock', src:'./tracks/eagles.mp3', color:'#fee140', emoji:'🦅' },
+    { id:'s9', title:'Pehli Nazar Ka Ehsaas', artist:'Unknown', genre:'Rock', src:'./tracks/vibe.mp3', color:'#fee140', emoji:'🌷' },
+
 ];
 let allSongs   = [...CATALOGUE];
 let playlists  = [];
