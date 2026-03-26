@@ -5,7 +5,7 @@ const CATALOGUE = [
   { id:'s2', title:'Neon Pulse',     artist:'GrooveBox', genre:'Synthwave', synthStyle:'synthwave', color:'#c471ed', emoji:'🌆' },
   { id:'s3', title:'Deep Space',     artist:'GrooveBox', genre:'Ambient',   synthStyle:'ambient',   color:'#12c2e9', emoji:'🌌' },
   { id:'s4', title:'Demons Phonk',   artist:'Unknown',   genre:'Phonk',     src:'demons_phonk.mp3', color:'#ff4444', emoji:'😈' },
-  { id:'s5', title:'Eagles',         artist:'Eagles',    genre:'Rock',      src:'eagles.mp3',       color:'#fee140', emoji:'🦅' },
+  { id:'s5', title:'Hotel California',         artist:'Eagles',    genre:'Rock',      src:'eagles.mp3',       color:'#fee140', emoji:'🦅' },
 ];
 
 let allSongs   = [...CATALOGUE];
