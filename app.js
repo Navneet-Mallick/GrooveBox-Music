@@ -4,9 +4,10 @@
 const CATALOGUE = [
   { id:'s1', title:'Midnight Drift',          artist:'GrooveBox', genre:'Lo-Fi',     synthStyle:'lofi',      color:'#ff6b9d', emoji:'🌙' },
   { id:'s2', title:'Neon Pulse',              artist:'GrooveBox', genre:'Synthwave', synthStyle:'synthwave', color:'#c471ed', emoji:'🌆' },
-  { id:'s3', title:'Deep Space',              artist:'GrooveBox', genre:'Ambient',   synthStyle:'ambient',   color:'#12c2e9', emoji:'🌌' },
+  // { id:'s3', title:'Deep Space',              artist:'GrooveBox', genre:'Ambient',   synthStyle:'ambient',   color:'#12c2e9', emoji:'🌌' },
+    { id:'s3', title:'Sanam',              artist:'SANAM', genre:'Pop/Fusion',   src:'./tracks/sanam.mp3',   color:'#12c2e9', emoji:'🎸' },
   { id:'s4', title:'Jeewan Ko Bato',          artist:'Unknown',   genre:'Nepali',    src:'./tracks/Jeewan Ko Bato.mp3',   color:'#ff4444', emoji:'💫' },
-    { id:'s5', title:'Ambarsariya',             artist:'Unknown',   genre:'Rock/Guitar',      src:'./tracks/Ambarsariya.mp3',            color:'#fee140', emoji:'❤️' },
+    { id:'s5', title:'Ambarsariya',             artist:'Unknown',   genre:'Rock/Guitar',      src:'./tracks/ambarsariya.mp3',            color:'#fee140', emoji:'❤️' },
   { id:'s6', title:'Backbenchers',            artist:'Unknown',   genre:'Fun/Pop',   src:'./tracks/Backbenchers.mp3',     color:'#fee140', emoji:'😎' },
   { id:'s7', title:'Demons Phonk',            artist:'Unknown',   genre:'Phonk',     src:'./tracks/demons_phonk.mp3',     color:'#ff4444', emoji:'😈' },
   { id:'s8', title:'Hotel California_Intro',  artist:'Eagles',    genre:'Rock',      src:'./tracks/eagles.mp3',           color:'#fee140', emoji:'🦅' },
