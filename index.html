@@ -4,17 +4,27 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GrooveBox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script>
+    // Apply saved theme before paint to avoid flash
+    (function(){
+      const t = localStorage.getItem('gb_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
 
-<div class="app">
+<div class="app" id="app">
 
   <!-- ── SIDEBAR ─────────────────────────────────────── -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <div class="logo">
-      <i class="fa-solid fa-music"></i>
+      <div class="logo-icon"><i class="fa-solid fa-music"></i></div>
       <span>GrooveBox</span>
     </div>
 
@@ -28,45 +38,84 @@
       <a href="#" class="nav-item" data-view="library">
         <i class="fa-solid fa-layer-group"></i> My Library
       </a>
+      <a href="#" class="nav-item" data-view="liked">
+        <i class="fa-solid fa-heart"></i> Liked Songs
+      </a>
     </nav>
 
     <div class="sidebar-section">
-      <p class="section-title">PLAYLISTS</p>
+      <div class="section-header">
+        <p class="section-title">PLAYLISTS</p>
+        <button class="icon-btn small" id="new-playlist-btn" title="New Playlist">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
       <ul id="playlist-sidebar"></ul>
-      <button class="upload-btn" id="new-playlist-btn" style="margin-top:8px">
-        <i class="fa-solid fa-plus"></i> New Playlist
-      </button>
     </div>
 
     <div class="upload-area">
-      <label for="local-upload" class="upload-btn">
+      <label for="local-upload" class="upload-btn" id="upload-label">
         <i class="fa-solid fa-upload"></i> Add Local Songs
       </label>
       <input type="file" id="local-upload" accept="audio/*" multiple hidden/>
+      <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">
+        <span class="theme-toggle-track">
+          <span class="theme-toggle-thumb"></span>
+        </span>
+        <span class="theme-toggle-label">
+          <i class="fa-solid fa-moon" id="theme-icon"></i>
+          <span id="theme-label">Dark mode</span>
+        </span>
+      </button>
     </div>
   </aside>
 
+  <!-- ── SIDEBAR OVERLAY (mobile) ──────────────────── -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
   <!-- ── MAIN ───────────────────────────────────────── -->
-  <main class="main">
-    <h3>All songs used here are royalty-free and used for demo purposes</marquee>
+  <main class="main" id="main-content">
+    <!-- Ambient color orbs (react to current song color) -->
+    <div class="ambient-orbs" id="ambient-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
     <div class="main-header">
-      <h2 id="main-title">All Songs</h2>
+      <div class="main-header-left">
+        <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h2 id="main-title">All Songs</h2>
+      </div>
       <div class="header-actions">
         <button class="upload-btn" id="add-to-pl-btn" style="display:none">
-          <i class="fa-solid fa-file-audio"></i> Add Song to Playlist
+          <i class="fa-solid fa-file-audio"></i> Add Song
         </button>
         <input type="file" id="pl-song-upload" accept="audio/*" multiple hidden/>
         <div class="search-box">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input type="text" id="search-input" placeholder="Search songs, artists…"/>
+          <button class="search-clear" id="search-clear" style="display:none">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
       </div>
     </div>
+
+    <!-- Drop zone overlay -->
+    <div class="drop-zone" id="drop-zone">
+      <div class="drop-zone-inner">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <p>Drop audio files here</p>
+      </div>
+    </div>
+
     <div id="song-grid" class="song-grid"></div>
   </main>
 
   <!-- ── NOW PLAYING BAR ────────────────────────────── -->
-  <footer class="now-playing">
+  <footer class="now-playing" id="now-playing">
     <div class="np-info">
       <div class="np-cover" id="np-cover">
         <i class="fa-solid fa-music"></i>
@@ -75,24 +124,24 @@
         <span class="np-title"  id="np-title">No song selected</span>
         <span class="np-artist" id="np-artist">—</span>
       </div>
-      <button class="icon-btn" id="like-btn" title="Like">
+      <button class="icon-btn like-btn-np" id="like-btn" title="Like">
         <i class="fa-regular fa-heart"></i>
       </button>
     </div>
 
     <div class="np-controls">
       <div class="control-btns">
-        <button class="icon-btn" id="shuffle-btn" title="Shuffle"><i class="fa-solid fa-shuffle"></i></button>
-        <button class="icon-btn" id="prev-btn"    title="Previous"><i class="fa-solid fa-backward-step"></i></button>
-        <button class="icon-btn play-main" id="play-btn" title="Play/Pause">
+        <button class="icon-btn" id="shuffle-btn" title="Shuffle (S)"><i class="fa-solid fa-shuffle"></i></button>
+        <button class="icon-btn" id="prev-btn"    title="Previous (←)"><i class="fa-solid fa-backward-step"></i></button>
+        <button class="icon-btn play-main" id="play-btn" title="Play/Pause (Space)">
           <i class="fa-solid fa-play"></i>
         </button>
-        <button class="icon-btn" id="next-btn"   title="Next"><i class="fa-solid fa-forward-step"></i></button>
-        <button class="icon-btn" id="repeat-btn" title="Repeat"><i class="fa-solid fa-repeat"></i></button>
+        <button class="icon-btn" id="next-btn"   title="Next (→)"><i class="fa-solid fa-forward-step"></i></button>
+        <button class="icon-btn" id="repeat-btn" title="Repeat (R)"><i class="fa-solid fa-repeat"></i></button>
       </div>
       <div class="progress-area">
         <span id="current-time">0:00</span>
-        <div class="progress-bar" id="progress-bar">
+        <div class="progress-bar" id="progress-bar" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <div class="progress-fill"  id="progress-fill"></div>
           <div class="progress-thumb" id="progress-thumb"></div>
         </div>
@@ -101,15 +150,28 @@
     </div>
 
     <div class="np-extra">
-      <button class="icon-btn" id="queue-btn" title="Queue"><i class="fa-solid fa-list"></i></button>
-      <i class="fa-solid fa-volume-high vol-icon"></i>
-      <div class="volume-bar" id="volume-bar">
+      <button class="icon-btn" id="queue-btn" title="Queue (Q)"><i class="fa-solid fa-list"></i></button>
+      <!-- Sleep Timer -->
+      <div class="sleep-timer-wrap" id="sleep-timer-wrap">
+        <button class="icon-btn" id="sleep-btn" title="Sleep Timer">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <div class="sleep-menu" id="sleep-menu">
+          <div class="sleep-menu-title">Sleep Timer</div>
+          <button class="sleep-opt" data-mins="15">15 min</button>
+          <button class="sleep-opt" data-mins="30">30 min</button>
+          <button class="sleep-opt" data-mins="60">60 min</button>
+          <button class="sleep-opt" data-mins="0">Cancel</button>
+          <div class="sleep-countdown" id="sleep-countdown" style="display:none"></div>
+        </div>
+      </div>
+      <button class="icon-btn" id="mute-btn" title="Mute (M)">
+        <i class="fa-solid fa-volume-high"></i>
+      </button>
+      <div class="volume-bar" id="volume-bar" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
         <div class="volume-fill"  id="volume-fill"></div>
         <div class="volume-thumb" id="volume-thumb"></div>
       </div>
-      <button class="icon-btn" id="mute-btn" title="Mute">
-        <i class="fa-solid fa-volume-high"></i>
-      </button>
     </div>
   </footer>
 
@@ -122,9 +184,35 @@
     <ul id="queue-list"></ul>
   </div>
 
+  <!-- ── KEYBOARD SHORTCUTS MODAL ──────────────────── -->
+  <div class="shortcuts-modal" id="shortcuts-modal">
+    <div class="shortcuts-inner">
+      <div class="shortcuts-header">
+        <h3>Keyboard Shortcuts</h3>
+        <button class="icon-btn" id="close-shortcuts"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="shortcuts-grid">
+        <div class="shortcut-row"><kbd>Space</kbd><span>Play / Pause</span></div>
+        <div class="shortcut-row"><kbd>→</kbd><span>Next track</span></div>
+        <div class="shortcut-row"><kbd>←</kbd><span>Previous track</span></div>
+        <div class="shortcut-row"><kbd>↑</kbd><span>Volume up</span></div>
+        <div class="shortcut-row"><kbd>↓</kbd><span>Volume down</span></div>
+        <div class="shortcut-row"><kbd>M</kbd><span>Mute / Unmute</span></div>
+        <div class="shortcut-row"><kbd>S</kbd><span>Toggle shuffle</span></div>
+        <div class="shortcut-row"><kbd>R</kbd><span>Cycle repeat</span></div>
+        <div class="shortcut-row"><kbd>L</kbd><span>Like current song</span></div>
+        <div class="shortcut-row"><kbd>Q</kbd><span>Toggle queue</span></div>
+        <div class="shortcut-row"><kbd>?</kbd><span>Show shortcuts</span></div>
+      </div>
+    </div>
+  </div>
+
 </div><!-- .app -->
 
-<audio id="audio-player"></audio>
+<!-- Visualizer canvas (fixed, behind everything) -->
+<canvas id="visualizer-canvas"></canvas>
+
+<audio id="audio-player" crossorigin="anonymous"></audio>
 <script src="db.js"></script>
 <script src="app.js"></script>
 </body>
