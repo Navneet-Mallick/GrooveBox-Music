@@ -3,24 +3,52 @@
 
 // ─── Catalogue ────────────────────────────────────────────────────────────────
 const CATALOGUE = [
-  {id:'s1',  title:'Aankhon Mein Tu',            artist:'random', genre:'Pop/Rock',       src:'./tracks/Aankhon Mein Tu.mp3',        color:'#ff6b9d', emoji:'🌟' },
-  { id:'s2', title:'Rise From The Ashes',                artist:'groove', genre:'Rock/Alternative', src:'./tracks/Rise From The Ashes.mp3',              color:'#c471ed', emoji:'💥' },
-  { id:'s3',  title:'Sanam',                 artist:'SANAM',   genre:'Pop/Fusion',    src:'./tracks/sanam.mp3',              color:'#12c2e9', emoji:'🎸' },
-  { id:'s4',  title:'Jeewan Ko Bato',        artist:'Unknown', genre:'Nepali',        src:'./tracks/Jeewan Ko Bato.mp3',     color:'#ff4444', emoji:'💫' },
-  { id:'s5',  title:'Ambarsariya',           artist:'Unknown', genre:'Rock/Guitar',   src:'./tracks/ambarsariya.mp3',        color:'#fee140', emoji:'❤️' },
-  { id:'s6',  title:'Backbenchers',          artist:'Unknown', genre:'Fun/Pop',       src:'./tracks/Backbenchers.mp3',       color:'#f093fb', emoji:'😎' },
-  { id:'s7',  title:'Demons Phonk',          artist:'Unknown', genre:'Phonk',         src:'./tracks/demons_phonk.mp3',       color:'#ff4444', emoji:'😈' },
-  { id:'s8',  title:'Hotel California Intro',artist:'Eagles',  genre:'Rock',          src:'./tracks/eagles.mp3',             color:'#fee140', emoji:'🦅' },
-  { id:'s9',  title:'Pehli Nazar Ka Ehsaas', artist:'Unknown', genre:'Romantic',      src:'./tracks/vibe.mp3',               color:'#4facfe', emoji:'🌷' },
-  { id:'s10', title:'Scam',                  artist:'Unknown', genre:'Funky',         src:'./tracks/scam.mp3',               color:'#43e97b', emoji:'🚀' },
-  { id:'s11', title:'Bolly Music',           artist:'Unknown', genre:'Bollywood',     src:'./tracks/Music.mp3',              color:'#fa709a', emoji:'💝' },
-  {id:'s12', title:'Keepers_of_the_Flame', artist:'genius', genre:'Epic/Rock', src:'./tracks/Keepers_of_the_Flame.mp3', color:'#ff6b9d', emoji:'🌹' }  ,
+  // ── Groovebox Classics ──
+  { id:'s1',  title:'Aankhon Mein Tu',       artist:'Unknown',  genre:'Pop/Rock',         src:'./tracks/Aankhon Mein Tu.mp3',       color:'#ff6b9d', emoji:'🌟', categories:['classics'] },
+  { id:'s2',  title:'Rise From The Ashes',   artist:'Groove',   genre:'Rock/Alternative', src:'./tracks/Rise From The Ashes.mp3',   color:'#c471ed', emoji:'💥', categories:['classics','rock'] },
+  { id:'s12', title:'Keepers of the Flame',  artist:'Genius',   genre:'Epic/Rock',        src:'./tracks/Keepers_of_the_Flame.mp3',  color:'#ff6b9d', emoji:'🌹', categories:['classics','rock'] },
+
+  // ── Rock ──
+  { id:'s5',  title:'Ambarsariya',           artist:'Unknown',  genre:'Rock/Guitar',      src:'./tracks/ambarsariya.mp3',           color:'#fee140', emoji:'❤️', categories:['rock'] },
+  { id:'s8',  title:'Hotel California Intro',artist:'Eagles',   genre:'Rock',             src:'./tracks/eagles.mp3',                color:'#fee140', emoji:'🦅', categories:['rock'] },
+
+  // ── Bollywood / Desi ──
+  { id:'s3',  title:'Sanam',                 artist:'SANAM',    genre:'Pop/Fusion',       src:'./tracks/sanam.mp3',                 color:'#12c2e9', emoji:'🎸', categories:['bollywood'] },
+  { id:'s4',  title:'Jeewan Ko Bato',        artist:'Unknown',  genre:'Nepali',           src:'./tracks/Jeewan Ko Bato.mp3',        color:'#ff4444', emoji:'💫', categories:['bollywood'] },
+  { id:'s11', title:'Bolly Music',           artist:'Unknown',  genre:'Bollywood',        src:'./tracks/Music.mp3',                 color:'#fa709a', emoji:'💝', categories:['bollywood'] },
+
+  // ── Phonk / Dark ──
+  { id:'s7',  title:'Demons Phonk',          artist:'Unknown',  genre:'Phonk',            src:'./tracks/demons_phonk.mp3',          color:'#ff4444', emoji:'😈', categories:['phonk'] },
+  { id:'s10', title:'Scam',                  artist:'Unknown',  genre:'Funky/Dark',       src:'./tracks/scam.mp3',                  color:'#43e97b', emoji:'🚀', categories:['phonk'] },
+
+  // ── Chill / Pop ──
+  { id:'s6',  title:'Backbenchers',          artist:'Unknown',  genre:'Fun/Pop',          src:'./tracks/Backbenchers.mp3',          color:'#f093fb', emoji:'😎', categories:['chill'] },
+  { id:'s9',  title:'Pehli Nazar Ka Ehsaas', artist:'Unknown',  genre:'Romantic',         src:'./tracks/vibe.mp3',                  color:'#4facfe', emoji:'🌷', categories:['chill'] },
+  { id:'s13', title:'Karwaan',               artist:'Unknown',  genre:'Indie/Chill',      src:'./tracks/karwaan.mp3',               color:'#f6d365', emoji:'🚗', categories:['chill','bollywood'] },
+  { id:'s14', title:'Manwa Laage',           artist:'Unknown',  genre:'Bollywood/Soft',   src:'./tracks/manwa laage.mp3',           color:'#fa709a', emoji:'🌸', categories:['bollywood','chill'] },
+  { id:'s15', title:'Shining',               artist:'Unknown',  genre:'Pop/Upbeat',       src:'./tracks/shining.mp3',               color:'#ffecd2', emoji:'✨', categories:['chill'] },
+
+  // ── Lo-Fi Ambient (Web Audio API generated) ──
+  { id:'lofi1', title:'Rain & Piano',        artist:'GrooveBox', genre:'Lo-Fi Ambient',   src:null, color:'#4facfe', emoji:'🌧️', categories:['lofi'], isLofi:true, lofiPreset:'rain'   },
+  { id:'lofi2', title:'Deep Space Drift',    artist:'GrooveBox', genre:'Lo-Fi Ambient',   src:null, color:'#7c3aed', emoji:'🌌', categories:['lofi'], isLofi:true, lofiPreset:'space'  },
+  { id:'lofi3', title:'Forest Morning',      artist:'GrooveBox', genre:'Lo-Fi Ambient',   src:null, color:'#43e97b', emoji:'🌿', categories:['lofi'], isLofi:true, lofiPreset:'forest' },
+];
+
+// ─── Category definitions ─────────────────────────────────────────────────────
+const CATEGORIES = [
+  { id:'classics',  label:'Groovebox Classics', emoji:'⭐', color:'#ff6b9d', desc:'The OG tracks that started it all' },
+  { id:'rock',      label:'Rock',               emoji:'🎸', color:'#fee140', desc:'Guitar-driven bangers'              },
+  { id:'bollywood', label:'Bollywood / Desi',   emoji:'🎬', color:'#fa709a', desc:'Desi vibes, Hindi & Nepali hits'    },
+  { id:'phonk',     label:'Phonk',              emoji:'😈', color:'#ff4444', desc:'Dark, heavy, distorted phonk'       },
+  { id:'chill',     label:'Chill / Pop',        emoji:'😌', color:'#4facfe', desc:'Easy listening & feel-good pop'     },
+  { id:'lofi',      label:'Lo-Fi Ambient',      emoji:'🌧️', color:'#7c3aed', desc:'Synthesized ambient soundscapes'    },
 ];
 
 // ─── State ────────────────────────────────────────────────────────────────────
 let allSongs    = [...CATALOGUE];
 let playlists   = [];
 let activePl    = null;
+let activeCategory = null;
 let currentId   = null;
 let isPlaying   = false;
 let isShuffle   = false;
@@ -95,7 +123,135 @@ function stopVisualizer() {
   if (ctx2d)  ctx2d.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-// ─── Core playback ────────────────────────────────────────────────────────────
+// ─── Lo-Fi Ambient Synthesizer (Web Audio API) ───────────────────────────────
+let lofiNodes = [];
+
+function stopLofi() {
+  lofiNodes.forEach(n => { try { n.stop(); } catch(e) {} });
+  lofiNodes = [];
+}
+
+function startLofi(preset) {
+  stopLofi();
+  const ctx = getActx();
+  if (ctx.state === 'suspended') ctx.resume();
+
+  const masterGain = ctx.createGain();
+  masterGain.gain.value = isMuted ? 0 : volume;
+  masterGain.connect(gainNode);
+
+  if (preset === 'rain') {
+    // White noise rain
+    const bufSize = ctx.sampleRate * 2;
+    const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1) * 0.18;
+    const noise = ctx.createBufferSource();
+    noise.buffer = buf;
+    noise.loop = true;
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.value = 1200;
+    filter.Q.value = 0.5;
+    noise.connect(filter);
+    filter.connect(masterGain);
+    noise.start();
+    lofiNodes.push(noise);
+
+    // Soft piano-like tones
+    [261.63, 329.63, 392.00, 523.25].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const env = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      env.gain.value = 0.04;
+      // Slow tremolo
+      const lfo = ctx.createOscillator();
+      const lfoGain = ctx.createGain();
+      lfo.frequency.value = 0.3 + i * 0.07;
+      lfoGain.gain.value = 0.015;
+      lfo.connect(lfoGain);
+      lfoGain.connect(env.gain);
+      lfo.start();
+      osc.connect(env);
+      env.connect(masterGain);
+      osc.start(ctx.currentTime + i * 0.8);
+      lofiNodes.push(osc, lfo);
+    });
+
+  } else if (preset === 'space') {
+    // Deep space drones
+    [55, 82.41, 110, 164.81].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const env = ctx.createGain();
+      osc.type = i % 2 === 0 ? 'sawtooth' : 'sine';
+      osc.frequency.value = freq;
+      const lfo = ctx.createOscillator();
+      const lfoG = ctx.createGain();
+      lfo.frequency.value = 0.05 + i * 0.03;
+      lfoG.gain.value = freq * 0.01;
+      lfo.connect(lfoG);
+      lfoG.connect(osc.frequency);
+      env.gain.value = 0.06;
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.value = 400 + i * 80;
+      osc.connect(filter);
+      filter.connect(env);
+      env.connect(masterGain);
+      osc.start(ctx.currentTime + i * 1.2);
+      lfo.start();
+      lofiNodes.push(osc, lfo);
+    });
+    // Subtle noise bed
+    const bufSize = ctx.sampleRate * 2;
+    const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < bufSize; i++) d[i] = (Math.random() * 2 - 1) * 0.04;
+    const noise = ctx.createBufferSource();
+    noise.buffer = buf; noise.loop = true;
+    const lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass'; lp.frequency.value = 200;
+    noise.connect(lp); lp.connect(masterGain);
+    noise.start();
+    lofiNodes.push(noise);
+
+  } else if (preset === 'forest') {
+    // Bird-like chirps + wind
+    const bufSize = ctx.sampleRate * 2;
+    const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < bufSize; i++) d[i] = (Math.random() * 2 - 1) * 0.12;
+    const noise = ctx.createBufferSource();
+    noise.buffer = buf; noise.loop = true;
+    const hp = ctx.createBiquadFilter();
+    hp.type = 'highpass'; hp.frequency.value = 600;
+    const windGain = ctx.createGain(); windGain.gain.value = 0.08;
+    noise.connect(hp); hp.connect(windGain); windGain.connect(masterGain);
+    noise.start();
+    lofiNodes.push(noise);
+
+    // Harmonic tones (birds)
+    [523.25, 659.25, 783.99, 1046.5].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const env = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      env.gain.value = 0.025;
+      const lfo = ctx.createOscillator();
+      const lfoG = ctx.createGain();
+      lfo.frequency.value = 0.2 + i * 0.15;
+      lfoG.gain.value = 0.02;
+      lfo.connect(lfoG); lfoG.connect(env.gain);
+      lfo.start();
+      osc.connect(env); env.connect(masterGain);
+      osc.start(ctx.currentTime + i * 0.5);
+      lofiNodes.push(osc, lfo);
+    });
+  }
+}
+
+
 function getSong(id)  { return allSongs.find(s => s.id === id) || null; }
 
 function getQueue() {
@@ -111,6 +267,7 @@ function playSong(id) {
   if (!song) return;
 
   stopVisualizer();
+  stopLofi();
   audioEl.pause();
   audioEl.src = '';
 
@@ -120,6 +277,19 @@ function playSong(id) {
   // Init Web Audio on first play (requires user gesture)
   try { getActx(); } catch(e) { console.warn('AudioContext init failed', e); }
   if (actx && actx.state === 'suspended') actx.resume();
+
+  // Lo-Fi ambient: use Web Audio synth, no audio element
+  if (song.isLofi) {
+    try { startLofi(song.lofiPreset); } catch(e) { console.error(e); }
+    updateMediaSession(song);
+    setAmbientColor(song.color);
+    const cover = document.getElementById('np-cover');
+    cover.classList.remove('pulse');
+    void cover.offsetWidth;
+    cover.classList.add('pulse');
+    refreshUI();
+    return;
+  }
 
   audioEl.src = song.src;
   audioEl.load();
@@ -149,6 +319,18 @@ function togglePlay() {
   if (!currentId) {
     const q = getQueue();
     if (q.length) playSong(q[0].id);
+    return;
+  }
+  const song = getSong(currentId);
+  if (song && song.isLofi) {
+    if (isPlaying) {
+      stopLofi();
+      isPlaying = false;
+    } else {
+      startLofi(song.lofiPreset);
+      isPlaying = true;
+    }
+    refreshUI();
     return;
   }
   if (isPlaying) {
@@ -354,6 +536,12 @@ function refreshUI() {
     document.getElementById('main-content').style.background =
       'linear-gradient(180deg,' + song.color + '28 0%,var(--bg) 380px)';
 
+    // Lo-fi: show ∞ duration
+    if (song.isLofi) {
+      document.getElementById('total-time').textContent = '∞';
+      document.getElementById('current-time').textContent = isPlaying ? '▶ live' : '0:00';
+    }
+
     const likeBtn = document.getElementById('like-btn');
     const liked   = likedIds.has(song.id);
     likeBtn.querySelector('i').className = liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
@@ -429,6 +617,8 @@ function renderAll() {
 
   let pool = activePl
     ? (() => { const pl = playlists.find(p => p.id === activePl); return pl ? allSongs.filter(s => pl.songIds.includes(s.id)) : []; })()
+    : activeCategory
+    ? allSongs.filter(s => s.categories && s.categories.includes(activeCategory))
     : allSongs;
   pool = getFilteredSongs(pool);
 
@@ -436,7 +626,9 @@ function renderAll() {
     grid.innerHTML = '<div class="empty-state"><i class="fa-solid fa-music"></i><p>'
       + (searchQuery
           ? 'No results for "' + escHtml(searchQuery) + '"'
-          : activePl ? 'Playlist is empty. Add songs with the + button.' : 'No songs yet.')
+          : activePl ? 'Playlist is empty. Add songs with the + button.'
+          : activeCategory ? 'No songs in this category yet.'
+          : 'No songs yet.')
       + '</p></div>';
     renderQueue();
     return;
@@ -451,12 +643,27 @@ function renderAll() {
   renderQueue();
 }
 
+function renderCategories() {
+  const grid = document.getElementById('song-grid');
+  grid.innerHTML = '<div class="categories-grid">'
+    + CATEGORIES.map(cat => {
+        const count = allSongs.filter(s => s.categories && s.categories.includes(cat.id)).length;
+        return '<div class="category-card" data-cat-id="' + cat.id + '" style="--cat-color:' + cat.color + '">'
+          + '<div class="cat-emoji">' + cat.emoji + '</div>'
+          + '<div class="cat-label">' + escHtml(cat.label) + '</div>'
+          + '<div class="cat-desc">' + escHtml(cat.desc) + '</div>'
+          + '<div class="cat-count">' + count + ' track' + (count !== 1 ? 's' : '') + '</div>'
+          + '</div>';
+      }).join('')
+    + '</div>';
+}
+
 function cardHTML(song) {
   const active = song.id === currentId;
   const playing = active && isPlaying;
   const liked  = likedIds.has(song.id);
   const inPl   = playlists.some(p => p.songIds.includes(song.id));
-  return '<div class="song-card' + (active ? ' active' : '') + '" data-song-id="' + song.id + '">'
+  return '<div class="song-card' + (active ? ' active' : '') + '" data-song-id="' + song.id + '"' + (song.isLofi ? ' data-lofi="true"' : '') + '>'
     + '<div class="card-cover" style="background:' + song.color + '">'
     + '<span class="cover-icon">' + song.emoji + '</span>'
     + '<div class="card-play-overlay"><i class="fa-solid ' + (playing ? 'fa-pause' : 'fa-play') + '"></i></div>'
@@ -760,6 +967,15 @@ function setupEvents() {
 
   // Song grid (event delegation)
   document.getElementById('song-grid').addEventListener('click', e => {
+    // Category card click
+    const catCard = e.target.closest('.category-card');
+    if (catCard) {
+      activeCategory = catCard.dataset.catId;
+      const cat = CATEGORIES.find(c => c.id === activeCategory);
+      document.getElementById('main-title').textContent = cat ? cat.emoji + ' ' + cat.label : 'Category';
+      renderAll();
+      return;
+    }
     if (e.target.closest('.card-like-btn')) {
       const id = e.target.closest('.card-like-btn').dataset.id;
       likedIds.has(id) ? likedIds.delete(id) : likedIds.add(id);
@@ -785,9 +1001,15 @@ function setupEvents() {
       document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active'));
       a.classList.add('active');
       activePl = null;
+      activeCategory = null;
       const view = a.dataset.view;
 
-      if (view === 'library') {
+      if (view === 'categories') {
+        document.getElementById('main-title').textContent = 'Categories';
+        activeCategory = null;
+        renderCategories();
+        renderQueue();
+      } else if (view === 'library') {
         document.getElementById('main-title').textContent = 'My Library';
         const local = getFilteredSongs(allSongs.filter(s => s.isLocal));
         document.getElementById('song-grid').innerHTML = local.length
@@ -833,6 +1055,7 @@ function setupEvents() {
     const li = e.target.closest('li[data-pl-id]');
     if (li) {
       activePl = li.dataset.plId;
+      activeCategory = null;
       const pl = playlists.find(p => p.id === activePl);
       document.getElementById('main-title').textContent = pl ? pl.name : 'Playlist';
       document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active'));

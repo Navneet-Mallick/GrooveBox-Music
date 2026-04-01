@@ -1241,3 +1241,86 @@ kbd {
 .confirm-yes { background: var(--danger); color: #fff; }
 .confirm-yes:hover { opacity: 0.88; }
 .confirm-yes.confirm-create { background: var(--gradient-accent); }
+
+/* ── Categories ─────────────────────────────────────────────────────────────── */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 8px 0 24px;
+}
+
+.category-card {
+  position: relative;
+  border-radius: 16px;
+  padding: 24px 18px 20px;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--cat-color, #7c3aed) 0%, color-mix(in srgb, var(--cat-color, #7c3aed) 60%, #0b0b0f) 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  overflow: hidden;
+  user-select: none;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  border-radius: inherit;
+  transition: background 0.18s;
+}
+
+.category-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.15);
+}
+
+.category-card:hover::before { background: rgba(0,0,0,0.2); }
+
+.category-card > * { position: relative; z-index: 1; }
+
+.cat-emoji {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+}
+
+.cat-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.cat-desc {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.cat-count {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Lo-Fi badge on song cards */
+.song-card[data-lofi="true"] .card-cover::after {
+  content: 'SYNTH';
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  font-size: 0.55rem;
+  font-weight: 700;
+  background: rgba(0,0,0,0.6);
+  color: #c4b5fd;
+  padding: 2px 5px;
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+}
